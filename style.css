@@ -74,3 +74,13 @@ footer {
   color: #aaa;
   font-size: 14px;
 }
+.btn_download {
+    padding: 10px;
+    background: #57dc88;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+#detail {
+    text-align: center;
+}

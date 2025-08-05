@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON & HTML Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
+    button { padding: 10px 20px; margin-right: 10px; }
+    .item { border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Generator JSON & HTML</h1>
+
+  <div id="form-container"></div>
+
+  <button onclick="addForm()">➕ Tambah Item</button>
+  <button onclick="generateOutput()">🚀 Generate JSON & HTML</button>
+
+  <h2>📦 Output JSON:</h2>
+  <textarea id="json-output" rows="10" readonly></textarea>
+
+  <h2>🌐 Output HTML:</h2>
+  <textarea id="html-output" rows="15" readonly></textarea>
+
+  <script>
+    let itemCount = 0;
+
+    function addForm() {
+      itemCount++;
+      const container = document.getElementById("form-container");
+
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <h3>Item #${itemCount}</h3>
+        <input placeholder="Judul" class="judul">
+        <input placeholder="Link Judul (slug, tanpa spasi)" class="link_judul">
+        <input placeholder="Size atau Info Tambahan (contoh: ⭐ 8.2 | Action, Adventure)" class="size">
+        <input placeholder="Link Download" class="link_download">
+        <input placeholder="Link Gambar" class="img">
+        <input placeholder="Fungsi onClick (contoh: a1398)" class="onclick" value="a1398">
+      `;
+      container.appendChild(div);
+    }
+
+    function generateOutput() {
+      const items = document.querySelectorAll(".item");
+      const jsonResult = [];
+      let htmlResult = '';
+
+      items.forEach(item => {
+        const judul = item.querySelector(".judul").value.trim();
+        const link_judul = item.querySelector(".link_judul").value.trim();
+        const size = item.querySelector(".size").value.trim();
+        const link_download = item.querySelector(".link_download").value.trim();
+        const img = item.querySelector(".img").value.trim();
+        const onclick = item.querySelector(".onclick").value.trim();
+
+        if (judul && link_judul) {
+          // JSON
+          jsonResult.push({ judul, link_judul, size, link_download, img });
+
+          // HTML
+          htmlResult += `
+<div class="film-card">
+  <a onclick="${onclick}()" href="view.html?t=${link_judul}"><img src="${img}" alt="${judul}"></a>
+  <h3>${judul}</h3>
+  <p>${size}</p>
+</div>
+`.trim() + '\n\n';
+        }
+      });
+
+      document.getElementById("json-output").value = JSON.stringify(jsonResult, null, 2);
+      document.getElementById("html-output").value = htmlResult.trim();
+    }
+
+    // Tambah form awal
+    addForm();
+  </script>
+</body>
+</html>
