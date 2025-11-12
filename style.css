@@ -1,15 +1,17 @@
 body {
   font-family: sans-serif;
-  margin: 0;
-  background: #111;
-  color: #eee;
+  margin: auto;
+  background: #eee8e8;
+  color: #1f0606;
+  max-width: 900px;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  background: #222;
+  background: #de5b10;
   padding: 10px 20px;
+  color: #eee8e8;
   align-items: center;
 }
 
@@ -27,21 +29,29 @@ nav a {
 .hero {
   padding: 40px 20px;
   text-align: center;
-  background: #1e1e1e;
+  background: #29aa29;
+  color: #ffffff;
 }
+.desc { background-color: #ddd424; 
+    padding: 5px;
+    font-size: 14px;
+    color: #111010;}
 
 .film-list {
+    background: #ccc;
   padding: 20px;
 }
 
 .grid {
+    
   display: list;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
 }
 
 .film-card {
-  background: #222;
+  background: #ffffff;
+  margin: 5px;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
@@ -49,12 +59,13 @@ nav a {
 }
 
 .film-card:hover {
-  transform: scale(1.05);
 }
 
 .film-card img {
-  width: 100%;
-  height: auto;
+    display:inline-table;
+  width: 100px;
+  height: 120px;
+  box-sizing: cover;
 }
 
 .film-card h3 {
@@ -64,7 +75,7 @@ nav a {
 
 .film-card p {
   font-size: 14px;
-  color: #ccc;
+  color: #ddd424;
 }
 
 footer {
